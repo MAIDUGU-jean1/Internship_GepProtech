@@ -59,7 +59,7 @@ const Navbar = ({ theme, toggleTheme }) => {
         <div className="nav-section nav-left">
           <div className="nav-logo">
             <span className="logo-text">GeP ProTech</span>
-            <span className="logo-accent">Academy</span>
+            <span className="logo-accent">Internship</span>
           </div>
         </div>
 
@@ -101,7 +101,7 @@ const Navbar = ({ theme, toggleTheme }) => {
               aria-expanded={isOpen}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
-              {isMobile && <span className="menu-label">{isOpen ? 'Close' : 'Menu'}</span>}
+              {/* {isMobile && <span className="menu-label">{isOpen ? 'Close' : 'Menu'}</span>} */}
             </button>
           </div>
         </div>

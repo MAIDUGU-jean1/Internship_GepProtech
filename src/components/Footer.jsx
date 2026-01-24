@@ -76,19 +76,19 @@ const Footer = () => {
             <div className="contact-info">
               <div className="contact-item">
                 <MapPin size={18} />
-                <span>123 Tech Street, Innovation City</span>
+                <span>ENS Street Bambili </span>
               </div>
               <div className="contact-item">
                 <Phone size={18} />
-                <span>+1 (555) 123-4567</span>
+                <span>+237 674386778</span>
               </div>
               <div className="contact-item">
                 <Mail size={18} />
-                <span>info@gepprotech.academy</span>
+                <span>www.gepprotech.com</span>
               </div>
               <div className="contact-item">
                 <Clock size={18} />
-                <span>Mon - Fri: 9:00 AM - 6:00 PM</span>
+                <span>Open From 9:00 AM - 6:00 PM</span>
               </div>
             </div>
           </div>

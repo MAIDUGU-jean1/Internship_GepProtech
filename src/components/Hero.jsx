@@ -1,6 +1,7 @@
 import React from 'react';
 import { Rocket, ChevronRight, TrendingUp, Users, Award, ArrowRight } from 'lucide-react';
 import '../styles/hero.css';
+import Image3 from '../assets/Images/image3.jpeg'
 
 const Hero = () => {
   return (
@@ -40,7 +41,7 @@ const Hero = () => {
               {/* You can replace this with your actual image */}
               <div className="image-wrapper">
                 <div className="main-image">
-                  {/* This would be your actual image */}
+                <img src={Image3} alt="No Image found " />
                   <div className="placeholder-image">
                     <div className="image-overlay">
                       <span className="image-text">Future Tech Leaders</span>
