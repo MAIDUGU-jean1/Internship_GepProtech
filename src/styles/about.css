@@ -1,4 +1,3 @@
-
 /* CSS Variables - Light Theme Defaults */
 :root {
   --primary-color: goldenrod;
@@ -13,6 +12,7 @@
   --success-color: #38a169;
   --warning-color: #dd6b20;
   --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --transition: all 0.3s ease
   --transition: all 0.3s ease;
   --border-radius: 8px;
 }
@@ -31,295 +31,203 @@
 
 /* About Section */
 .about-section {
-  padding: 100px 0;
-  background-color: var(--bg-light);
+  padding: 80px 0;
+  background: var(--bg-light);
+  color: var(--text-light);
   position: relative;
   overflow: hidden;
 }
 
-.about-section::before {
-  content: '';
+/* ensure content sits above animated background */
+.about-section {
+  position: relative; /* already present but ensure it remains */
+  overflow: visible;  /* allow bg elements to overflow */
+}
+
+/* container above background */
+.about-section > .container {
+  position: relative;
+  z-index: 1; /* keep text and controls above animated background */
+}
+
+/* Background wrapper for animated blurred shapes */
+.about-bg {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* common shape styles */
+.bg-shape {
+  position: absolute;
+  filter: blur(36px); /* heavy blur so shapes don't affect readability */
+  opacity: 0.20;
+  will-change: transform;
+  transform-origin: center;
+  animation: floatSlow 28s ease-in-out infinite;
+}
+
+/* circular glowing blob */
+.bg-shape.circle {
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(218,165,32,0.9), rgba(218,165,32,0.45) 30%, transparent 60%);
+  top: -80px;
+  left: -80px;
+  animation-duration: 32s;
+}
+
+/* cap-like soft rectangle */
+.bg-shape.cap {
+  width: 360px;
+  height: 180px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(42,157,244,0.15), rgba(218,165,32,0.18));
+  right: -60px;
+  top: 40%;
+  transform: rotate(-18deg);
+  animation-duration: 40s;
+  animation-direction: alternate-reverse;
+}
+
+/* angle bracket accent - slightly sharper, use text as visual */
+.bg-shape.angle::before {
+  content: "<>";
+  display: block;
+  font-size: 96px;
+  color: rgba(45,55,72,0.12);
+  filter: blur(12px);
+  transform: rotate(4deg);
+}
+.bg-shape.angle {
+  width: 140px;
+  height: 140px;
+  left: 50%;
+  top: -20px;
+  animation-duration: 36s;
+}
+
+/* slow floating keyframes */
+@keyframes floatSlow {
+  0% { transform: translateY(0) translateX(0) scale(1); }
+  50% { transform: translateY(-22px) translateX(12px) scale(1.03); }
+  100% { transform: translateY(0) translateX(0) scale(1); }
 }
 
 /* Section Header */
 .section-header {
   text-align: center;
-  max-width: 800px;
-  margin: 0 auto 60px;
+  margin-bottom: 40px;
 }
 
 .section-subtitle {
-  display: inline-block;
-  font-size: 0.9rem;
-  font-weight: 600;
   color: var(--primary-color);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 15px;
-  padding: 6px 16px;
-  background-color: rgba(218, 165, 32, 0.1);
-  border-radius: 20px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 8px;
 }
 
 .section-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--secondary-color);
-  margin-bottom: 20px;
-  line-height: 1.2;
+  font-size: 2rem;
+  margin-bottom: 12px;
 }
 
 .section-description {
-  font-size: 1.1rem;
-  color: var(--text-light);
-  opacity: 0.9;
-  line-height: 1.7;
-  max-width: 700px;
+  max-width: 720px;
   margin: 0 auto;
+  color: var(--text-light);
 }
 
-/* About Content Layout */
+/* Content */
 .about-content {
   display: flex;
-  gap: 60px;
+  gap: 2.5rem;
   align-items: center;
-  margin-bottom: 80px;
+  justify-content: space-between;
+  margin-top: 32px;
 }
 
+/* Text column */
 .about-text {
-  flex: 1;
+  flex: 1 1 52%;
+  min-width: 260px;
 }
 
-.about-image {
-  flex: 1;
-  position: relative;
-}
-
-/* Features List */
+/* Features list */
 .about-features {
-  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 18px;
 }
 
 .feature-item {
   display: flex;
+  gap: 12px;
   align-items: flex-start;
-  gap: 15px;
-  margin-bottom: 25px;
   padding: 20px;
-  background-color: var(--card-light);
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
-}
-
-.feature-item:hover {
-  border-color: var(--primary-color);
-  transform: translateX(5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-radius: var(--border-radius);
 }
 
 .feature-icon {
   color: var(--primary-color);
-  background-color: rgba(218, 165, 32, 0.1);
-  padding: 12px;
-  border-radius: 50%;
   flex-shrink: 0;
 }
 
-.feature-item h4 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--secondary-color);
-  margin-bottom: 5px;
-}
-
-.feature-item p {
-  color: var(--text-light);
-  opacity: 0.9;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  margin: 0;
-}
-
-/* Mission Text */
-.about-mission {
-  font-size: 1.1rem;
-  color: var(--text-light);
-  line-height: 1.7;
-  margin-bottom: 30px;
-  padding-left: 20px;
-  border-left: 3px solid var(--primary-color);
-  background-color: rgba(218, 165, 32, 0.05);
-  padding: 20px;
-  border-radius: 0 8px 8px 0;
-}
-
-/* Learn More Button */
-.learn-more-btn {
-  display: inline-flex;
+.about-image {
+  flex: 1 1 44%;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
-  padding: 14px 28px;
-  font-weight: 600;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  min-width: 220px;
 }
 
-.learn-more-btn:hover {
-  transform: translateX(5px);
-  box-shadow: 0 8px 20px rgba(218, 165, 32, 0.3);
-}
-
-/* Image Section */
 .image-container {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-}
-
-.placeholder-image {
   width: 100%;
-  height: 400px;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  position: relative;
+  max-width: 600px;
+  height: 550px; /* controls visible image area */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background-color: var(--card-light);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Replace this with your actual image */
-.placeholder-image::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, rgba(26, 54, 93, 0.9), rgba(218, 165, 32, 0.8)),
-              url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: overlay;
+.about-mission {
+  margin: 20px 0;
+  padding: 20px;
+  border-left: 4px solid var(--primary-color);
+  background-color: rgba(218, 165, 32, 0.1);
+  color: var(--text-light);
+  font-style: italic;
 }
 
-.image-content {
-  position: relative;
-  z-index: 2;
+/* Make the image fill the container and keep aspect */
+.about-img {
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: flex-end;
-  padding: 30px;
+  /* object-fit: cover;  */
+  display: block;
 }
 
-.image-stats {
-  display: flex;
-  gap: 30px;
-}
-
-.stat {
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 15px 20px;
-  border-radius: 10px;
-  text-align: center;
-  min-width: 120px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.stat-number {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--secondary-color);
-  line-height: 1;
-}
-
-.stat-label {
-  font-size: 0.85rem;
-  color: var(--text-light);
-  margin-top: 5px;
-}
-
-/* Call to Action */
+/* CTA Section */
 .about-cta {
-  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
-  border-radius: 16px;
-  padding: 40px 50px;
-  color: white;
-  position: relative;
-  overflow: hidden;
-}
-
-.about-cta::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--primary-color), #ffd700);
+  margin-top: 40px;
+  padding: 20px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, rgba(218,165,32,0.08), rgba(218,165,32,0.03));
 }
 
 .cta-content {
   display: flex;
+  gap: 16px;
   align-items: center;
-  gap: 30px;
-  position: relative;
-  z-index: 2;
-}
-
-.cta-icon {
-  width: 60px;
-  height: 60px;
-  background-color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--secondary-color);
-  flex-shrink: 0;
-}
-
-.cta-text {
-  flex: 1;
-}
-
-.cta-text h3 {
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.cta-text p {
-  opacity: 0.9;
-  font-size: 1rem;
-  margin: 0;
-}
-
-.cta-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 32px;
-  background-color: white;
-  color: var(--secondary-color);
-  font-weight: 600;
-  border-radius: 8px;
-  white-space: nowrap;
-  transition: all 0.3s ease;
-}
-
-.cta-btn:hover {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  transform: translateX(5px);
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+  justify-content: space-between;
 }
 
 /* Dark Mode Styles */
@@ -340,6 +248,7 @@
 [data-theme="dark"] .about-mission {
   background-color: rgba(218, 165, 32, 0.05);
   border-left-color: var(--primary-color);
+ 
 }
 
 [data-theme="dark"] .section-title {
@@ -376,35 +285,25 @@
 }
 
 @media (max-width: 992px) {
-  .about-section {
-    padding: 80px 0;
-  }
-  
   .about-content {
-    flex-direction: column;
-    gap: 50px;
+    gap: 1.25rem;
   }
-  
-  .section-title {
-    font-size: 2.1rem;
-  }
-  
-  .about-cta {
-    padding: 35px 40px;
-  }
-  
-  .cta-content {
-    gap: 25px;
-  }
-  
-  .cta-text h3 {
-    font-size: 1.6rem;
+  .image-container {
+    max-width: 420px;
+    height: 300px;
   }
 }
 
 @media (max-width: 768px) {
   .about-section {
     padding: 70px 0;
+  }
+  .about-content{
+    flex-direction: column;
+  }
+  .about-image{
+    width: 350px;
+    height: 500px;
   }
   
   .section-title {
@@ -465,7 +364,7 @@
   .cta-btn {
     width: 100%;
     justify-content: center;
-  }
+  }about-content
   
   .placeholder-image {
     height: 300px;
@@ -483,4 +382,11 @@
   .stat-number {
     font-size: 1.5rem;
   }
+}
+
+/* keep existing responsive behavior but reduce blur/heights on small screens */
+@media (max-width: 768px) {
+  .bg-shape.circle { width: 260px; height: 260px; top: -60px; left: -40px; filter: blur(28px); opacity: 0.16; }
+  .bg-shape.cap { width: 240px; height: 120px; right: -40px; top: 45%; filter: blur(22px); opacity: 0.12; }
+  .bg-shape.angle { left: 55%; top: -10px; }
 }

@@ -57,6 +57,11 @@ const Services = () => {
 
   return (
     <section id="services" className="services-section">
+      <div className="services-bg" aria-hidden="true">
+        <span className="code-tag tag1" />
+        <span className="code-tag tag2" />
+        <span className="code-tag tag3" />
+      </div>
       <div className="container">
         <div className="section-header">
           <span className="section-subtitle">Our Services</span>

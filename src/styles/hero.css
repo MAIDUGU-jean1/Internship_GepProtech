@@ -33,6 +33,7 @@
   padding: 120px 0 80px;
   background: linear-gradient(135deg, var(--bg-light) 0%, #f0f4f8 100%);
   overflow: hidden;
+  position: relative; /* ensure pseudo layers work */
 }
 
 .hero-content {
@@ -195,109 +196,148 @@
   position: relative;
 }
 
-.image-wrapper {
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  transform: perspective(1000px) rotateY(-5deg);
-  transition: transform 0.5s ease;
-}
-
-.image-wrapper:hover {
-  transform: perspective(1000px) rotateY(0deg);
-}
-
-.main-image {
+.hero-image .image-container {
   width: 100%;
-  height: 500px;
-  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.placeholder-image {
+/* wrapper for decorations + main image */
+.image-wrapper {
+  width: 100%;
+  max-width: 520px;
+  /* control height to ensure images appear fully and responsively */
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* main visible image area */
+.main-image {
+  position: relative;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  background-color: var(--card-light);
 }
 
-.placeholder-image::before {
-  content: '';
+/* the actual <img> - make it fill container and cover */
+.main-image .hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ensures image fills without distortion */
+  display: block;
+}
+
+/* Keep overlay text visible on top of image */
+.placeholder-image {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, rgba(26, 54, 93, 0.9), rgba(218, 165, 32, 0.8)),
-              url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: overlay;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  pointer-events: none;
 }
 
 .image-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-  color: white;
-  z-index: 2;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%);
+  color: #fff;
+  box-sizing: border-box;
 }
 
 .image-text {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 
-/* Floating Decorations */
+/* decorations (unchanged - kept for visual flair) */
 .image-decoration {
   position: absolute;
-  top: -15px;
-  right: -15px;
-  bottom: -15px;
-  left: -15px;
-  z-index: -1;
+  top: -12px;
+  left: -12px;
+  right: -12px;
+  bottom: -12px;
+  pointer-events: none;
 }
 
-.decoration-item {
+/* hero background animated shapes (behind hero content) */
+.hero::before,
+.hero::after {
+  content: "";
   position: absolute;
-  border-radius: 50%;
-  background: var(--primary-color);
-  opacity: 0.1;
+  inset: -10% -10% auto -10%;
+  z-index: 1;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  mix-blend-mode: screen;
+  filter: blur(40px);
+  opacity: 0.28;
+  transform-origin: center;
+  animation: heroFloat 36s linear infinite;
 }
 
-.item1 {
-  top: 10%;
-  right: 10%;
-  width: 100px;
-  height: 100px;
-  animation: float 6s ease-in-out infinite;
+/* two layered gradients to create motion & depth */
+.hero::before {
+  background-image: radial-gradient(circle at 15% 25%, rgba(254,215,102,0.95), transparent 25%),
+                    radial-gradient(circle at 85% 75%, rgba(66,153,225,0.8), transparent 18%);
+  top: -12%;
+  left: -8%;
+  right: -8%;
+  transform: rotate(0deg);
+  animation-duration: 44s;
+}
+.hero::after {
+  background-image: radial-gradient(circle at 50% 10%, rgba(102,126,234,0.25), transparent 22%),
+                    radial-gradient(circle at 20% 80%, rgba(118,185,0,0.18), transparent 18%);
+  top: -6%;
+  left: -6%;
+  right: -6%;
+  transform: rotate(8deg);
+  animation-duration: 52s;
 }
 
-.item2 {
-  bottom: 20%;
-  left: 5%;
-  width: 60px;
-  height: 60px;
-  animation: float 8s ease-in-out infinite reverse;
+/* slow rotate/float for hero bg */
+@keyframes heroFloat {
+  0% { transform: translateY(0) rotate(0deg) scale(1); }
+  50% { transform: translateY(-18px) rotate(6deg) scale(1.01); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
 }
 
-.item3 {
-  top: 40%;
-  left: 15%;
-  width: 80px;
-  height: 80px;
-  animation: float 7s ease-in-out infinite;
-  animation-delay: 1s;
+/* subtle foreground decorative shapes inside hero image area (non-intrusive) */
+.image-decoration .decoration-item {
+  position: absolute;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  filter: blur(6px);
+  opacity: 0.65;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px) rotate(10deg); }
+/* small responsive tweaks */
+@media (max-width: 992px) {
+  .image-wrapper {
+    max-width: 420px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .image-wrapper {
+    max-width: 360px;
+    height: 260px;
+  }
+}
+
+@media (max-width: 480px) {
+  .image-wrapper {
+    max-width: 400px;
+    height: 220px;
+  }
 }
 
 /* Responsive Design */

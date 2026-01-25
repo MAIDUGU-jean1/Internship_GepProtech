@@ -30,10 +30,10 @@ const Navbar = ({ theme, toggleTheme }) => {
 
   const navItems = [
     { name: 'Home', icon: <Home size={20} /> },
-    { name: 'About', icon: <Users size={20} /> },
     { name: 'Services', icon: <Briefcase size={20} /> },
+    { name: 'About', icon: <Users size={20} /> },
     { name: 'Internships', icon: <BookOpen size={20} /> },
-    { name: 'Blog', icon: <MessageSquare size={20} /> },
+    // { name: 'Blog', icon: <MessageSquare size={20} /> },
   ];
 
   const handleMenuToggle = () => {

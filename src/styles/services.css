@@ -3,6 +3,7 @@
   padding: 100px 0;
   background-color: var(--bg-light);
   position: relative;
+  overflow: visible;
 }
 
 .services-section::before {
@@ -125,6 +126,48 @@
 
 .service-card:hover::before {
   opacity: 1;
+}
+
+/* Background animations for Services section (code/tag-themed, no geometric shapes) */
+/* Usage: add <div class="services-bg" aria-hidden="true">…</div> inside .services-section and import this file in Services.jsx */
+
+.services-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* individual code-tag elements (text-based, animated) */
+.services-bg .code-tag {
+  position: absolute;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+  color: rgba(45,55,72,0.12);
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  filter: blur(6px);
+  transform-origin: left center;
+  will-change: transform, opacity;
+  animation: slideTag var(--tag-duration, 24s) linear infinite;
+}
+
+/* place several tags with different positions and timings */
+.services-bg .code-tag.tag1 { top: 8%; left: -8%; font-size: 48px; animation-duration: 34s; }
+.services-bg .code-tag.tag2 { top: 40%; left: -6%; font-size: 36px; animation-duration: 28s; animation-delay: 4s; }
+.services-bg .code-tag.tag3 { top: 70%; left: -10%; font-size: 56px; animation-duration: 44s; animation-delay: 8s; color: rgba(218,165,32,0.08); }
+
+/* sample tag contents via pseudo element */
+.services-bg .code-tag.tag1::after { content: "<section/>"; }
+.services-bg .code-tag.tag2::after { content: "</div>"; }
+.services-bg .code-tag.tag3::after { content: "<article/>"; }
+
+/* slide from left to right very slowly and fade */
+@keyframes slideTag {
+  0% { transform: translateX(0) scale(1); opacity: 0.06; }
+  40% { opacity: 0.14; }
+  60% { opacity: 0.14; }
+  100% { transform: translateX(120vw) scale(1.02); opacity: 0.02; }
 }
 
 /* Dark Mode Styles */
@@ -255,3 +298,11 @@
     font-size: 0.9rem;
   }
 }
+
+/* responsive reductions */
+@media (max-width: 768px) {
+  .services-bg .code-tag { font-size: 28px; filter: blur(4px); }
+  .services-bg .code-tag.tag3 { font-size: 40px; }
+}
+
+/* end of services.css */
