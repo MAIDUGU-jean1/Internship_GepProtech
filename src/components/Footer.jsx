@@ -30,8 +30,8 @@ const Footer = () => {
               <span className="logo-accent">Academy</span>
             </div>
             <p className="footer-description">
-              Empowering the next generation of tech leaders through 
-              practical, industry-focused education and mentorship.
+              The Pioneer of the Next tech Fontier 
+              Empowering Youth with Cutting-Edge Skills for a Digital Future.
             </p>
             <div className="social-links">
               <a href="#" className="social-link">
