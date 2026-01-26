@@ -1,35 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Home, 
-  Users, 
-  Briefcase, 
-  BookOpen, 
-  MessageSquare, 
-  ChevronRight,
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
-  CheckCircle,
-  Award,
-  TrendingUp,
-  Code,
-  Database,
-  Shield,
-  Globe,
-  Cpu,
-  FileText
-} from 'lucide-react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Services from './components/Services';
-import Internships from './components/Internships';
-import BlogPreview from './components/BlogPreview';
-import Footer from './components/Footer';
-import ThemeToggle from './components/ThemeToggle';
-import WhyChooseUs from './components/WhyChooseUs';
+// Import your components
+import MainWebsite from './MainWebsite';
+import InternshipApplicationPage from './components/InternshipApplicationPage';
 
 function App() {
   const [theme, setTheme] = useState('light');
@@ -48,17 +22,26 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
-      <Hero />
-      <WhyChooseUs />
-      <Services />
-      <About />
-      {/* <Internships /> */}
-      {/* <BlogPreview /> */}
-      <Footer />
-      <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-    </div>
+      <Routes>
+        <Route 
+          path="/" 
+          element={
+            <MainWebsite 
+              theme={theme} 
+              toggleTheme={toggleTheme} 
+            />
+          } 
+        />
+        <Route 
+          path="/internship-application" 
+          element={
+            <InternshipApplicationPage 
+              theme={theme} 
+              toggleTheme={toggleTheme} 
+            />
+          } 
+        />
+      </Routes>
   );
 }
 

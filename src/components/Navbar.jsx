@@ -11,17 +11,17 @@ const Navbar = ({ theme, toggleTheme }) => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    
+
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', checkMobile);
-    
+
     // Initial check
     checkMobile();
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', checkMobile);
@@ -33,6 +33,7 @@ const Navbar = ({ theme, toggleTheme }) => {
     { name: 'Services', icon: <Briefcase size={20} /> },
     { name: 'About', icon: <Users size={20} /> },
     { name: 'Internships', icon: <BookOpen size={20} /> },
+
     // { name: 'Blog', icon: <MessageSquare size={20} /> },
   ];
 
@@ -83,19 +84,21 @@ const Navbar = ({ theme, toggleTheme }) => {
         {/* Right Section: Actions */}
         <div className="nav-section nav-right">
           <div className="nav-actions">
-            <button 
-              className="theme-toggle" 
+            <button
+              className="theme-toggle"
               onClick={toggleTheme}
               aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
             >
               {theme === 'light' ? '🌙' : '☀️'}
             </button>
-            <button className="btn btn-primary apply-btn">
-              <Rocket size={18} />
-              <span>Apply Now</span>
-            </button>
-            <button 
-              className="mobile-menu-btn" 
+            <a href="/internship-application">
+              <button className="btn btn-primary apply-btn">
+                <Rocket size={18} />
+                <span>Apply Now</span>
+              </button>
+            </a>
+            <button
+              className="mobile-menu-btn"
               onClick={handleMenuToggle}
               aria-label="Toggle menu"
               aria-expanded={isOpen}
@@ -106,9 +109,9 @@ const Navbar = ({ theme, toggleTheme }) => {
           </div>
         </div>
       </div>
-      
+
       {/* Overlay for mobile menu */}
-      {/* {isOpen && (
+      {isOpen && (
         <div 
           className="mobile-menu-overlay"
           onClick={() => {
@@ -116,7 +119,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             document.body.style.overflow = 'auto';
           }}
         />
-      )} */}
+      )}
     </nav>
   );
 };
