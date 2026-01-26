@@ -83,11 +83,13 @@ const About = () => {
               <h3>Ready to Start Your Journey?</h3>
               <p>Join our program and take the first step towards a successful career in IT</p>
             </div>
-            <button className="btn btn-primary cta-btn">
-              <Rocket size={20} />
-              Apply Now
-              <ChevronRight size={20} />
-            </button>
+            <a href="/internship-application">
+              <button className="btn btn-primary cta-btn">
+                <Rocket size={20} />
+                Apply Now
+                <ChevronRight size={20} />
+              </button>
+            </a>
           </div>
         </div>
       </div>

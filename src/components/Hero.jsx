@@ -39,11 +39,11 @@ const Hero = () => {
               Empowering <span className="highlight">Young Minds</span> in Technology
             </h1>
             <p className="hero-description">
-              GeP ProTech Academy bridges the gap between ambition and expertise. 
-              Our vocational training programs equip young people with cutting-edge 
+              GeP ProTech Academy bridges the gap between ambition and expertise.
+              Our vocational training programs equip young people with cutting-edge
               tech skills for tomorrow's digital landscape.
             </p>
-            
+
             {/* Redesigned CTA - Long and sleek */}
             <div className="hero-cta-long">
               <div className="cta-text">
@@ -55,13 +55,15 @@ const Hero = () => {
                   Join our internship program and take the first step towards a successful career in IT.
                 </p>
               </div>
-              <button className="btn btn-primary cta-button">
-                Apply Now
-                <ArrowRight size={20} />
-              </button>
+              <a href="/internship-application">
+                <button className="btn btn-primary cta-button">
+                  Apply Now
+                  <ArrowRight size={20} />
+                </button>
+              </a>
             </div>
           </div>
-          
+
           <div className="hero-image">
             <div className="image-container">
               {/* image-wrapper contains the visible image area */}
