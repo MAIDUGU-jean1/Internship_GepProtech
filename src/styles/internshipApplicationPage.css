@@ -154,7 +154,15 @@
   color: var(--primary-color);
   position: relative;
 }
-
+.form-error{
+  background-color: #fed7d7;
+  color: #9b2c2c;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #f56565;
+  font-weight: 600;
+}
 .internship-app-wrapper .hero-title .highlight::after {
   content: '';
   position: absolute;
