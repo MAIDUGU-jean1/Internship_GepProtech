@@ -16,11 +16,13 @@ import {
   X
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/internshipApplicationPage.css';
 export default function InternshipApplicationPage() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [showCommunityModal, setShowCommunityModal] = useState(false);
+  const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -28,8 +30,8 @@ export default function InternshipApplicationPage() {
     school: '',
     department: '',
     internshipField: '',
-    startDate: '',
-    endDate: '',
+    startMonth: '',
+    endMonth: '',
     studyLevel: '',
     coverLetter: ''
   });
@@ -79,21 +81,82 @@ export default function InternshipApplicationPage() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      school: '',
-      department: '',
-      internshipField: '',
-      startDate: '',
-      endDate: '',
-      studyLevel: '',
-      coverLetter: ''
-    })
-    handleNext();
+    
+    // Only submit when on step 3 (final step)
+    if (step !== 3) {
+      handleNext();
+      return;
+    }
+
+    try {
+      // Prepare the form data to match backend field names
+      const dataToSubmit = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || null,
+        school: formData.school || null,
+        department: formData.department || null,
+        internshipField: formData.internshipField || null,
+        startMonth: formData.startMonth || null,
+        endMonth: formData.endMonth || null,
+        studyLevel: formData.studyLevel || null,
+        coverletter: formData.coverLetter || null
+      };
+
+      const response = await axios.post(
+        'http://localhost:8000/api/internship-application',
+        dataToSubmit,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        }
+      );
+
+      if (response.status === 201 || response.status === 200) {
+        // Reset form data
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          school: '',
+          department: '',
+          internshipField: '',
+          startMonth: '',
+          endMonth: '',
+          studyLevel: '',
+          coverLetter: ''
+        });
+        console.log('Form submitted successfully:', response.data);
+        // Show success modal
+        setShowCommunityModal(true);
+      }
+    } catch (error) {
+      // Handle errors from backend
+      if (error.response) {
+        // Backend returned error response
+        console.error('Backend error:', error.response.data);
+        setError(error.response.data);
+        
+        // Display validation errors or server errors
+        const errorMessage = error.response.data?.message || 
+                           'An error occurred while submitting your application.';
+        // alert(errorMessage);
+      } else if (error.request) {
+        // Request sent but no response
+        console.error('No response from server:', error.request);
+        // alert('Unable to connect to server. Please try again later.');
+        setError('Unable to connect to server. Please try again later.');
+      } else {
+        // Error in request setup
+        console.error('Request error:', error.message);
+        // alert('An error occurred. Please try again.');
+        setError('An error occurred. Please try again.');
+      }
+    }
   };
 
   const handleJoinCommunity = () => {
@@ -186,6 +249,11 @@ export default function InternshipApplicationPage() {
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="application-form">
+                  {error && (
+                    <div className="form-error">
+                      {typeof error === 'string' ? error : 'An error occurred. Please check your input and try again.'}
+                    </div>
+                  )}
                   {step === 1 && (
                     <div className="form-step active">
                       <h3 className="step-title">
@@ -344,30 +412,30 @@ export default function InternshipApplicationPage() {
                         </div>
 
                         <div className="form-group">
-                          <label htmlFor="startDate">
+                          <label htmlFor="startMonth">
                             <Calendar size={18} />
-                            <span>Preferred Start Date *</span>
+                            <span>Preferred Start Month *</span>
                           </label>
                           <input
-                            type="date"
-                            id="startDate"
-                            name="startDate"
-                            value={formData.startDate}
+                            type="month"
+                            id="startMonth"
+                            name="startMonth"
+                            value={formData.startMonth}
                             onChange={handleInputChange}
                             required
                           />
                         </div>
 
                         <div className="form-group">
-                          <label htmlFor="endDate">
+                          <label htmlFor="endMonth">
                             <Calendar size={18} />
-                            <span>Preferred End Date *</span>
+                            <span>Preferred End Month *</span>
                           </label>
                           <input
-                            type="date"
-                            id="endDate"
-                            name="endDate"
-                            value={formData.endDate}
+                            type="month"
+                            id="endMonth"
+                            name="endMonth"
+                            value={formData.endMonth}
                             onChange={handleInputChange}
                             required
                           />
