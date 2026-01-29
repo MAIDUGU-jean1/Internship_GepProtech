@@ -30,7 +30,7 @@ const Navbar = ({ theme, toggleTheme }) => {
 
   const navItems = [
     { name: 'Home', icon: <Home size={20} /> },
-    { name: 'Services', icon: <Briefcase size={20} /> },
+    { name: 'Programs', icon: <Briefcase size={20} /> },
     { name: 'About', icon: <Users size={20} /> },
     { name: 'Internships', icon: <BookOpen size={20} /> },
 
@@ -59,8 +59,11 @@ const Navbar = ({ theme, toggleTheme }) => {
         {/* Left Section: Logo */}
         <div className="nav-section nav-left">
           <div className="nav-logo">
-            <span className="logo-text">GeP ProTech</span>
-            <span className="logo-accent">Internship</span>
+            <img className='logo' src="/assets/logo1.png" alt="logo" />
+            <div className='logo-info'>
+              <span className="logo-text">GeP ProTech</span> <br />
+              <span className="logo-accent">Internship</span>
+            </div>
           </div>
         </div>
 

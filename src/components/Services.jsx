@@ -79,7 +79,7 @@ const Services = () => {
       </div>
       <div className="container">
         <div className="section-header">
-          <span className="section-subtitle">Our Services</span>
+          <span className="section-subtitle">Our Programs</span>
           <h2 className="section-title">Comprehensive Tech Training Services</h2>
           <p className="section-description">
             We offer specialized training programs designed to equip you with in-demand skills 
