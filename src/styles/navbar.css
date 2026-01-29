@@ -37,6 +37,7 @@
   background-color: var(--bg-light);
   transition: var(--transition);
   padding: 20px 0;
+  box-shadow: var(--shadow);
 }
 
 .navbar.scrolled {

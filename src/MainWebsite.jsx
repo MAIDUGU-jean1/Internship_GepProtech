@@ -7,6 +7,7 @@ import Services from './components/Services';
 import Footer from './components/Footer';
 import ThemeToggle from './components/ThemeToggle';
 import WhyChooseUs from './components/WhyChooseUs';
+import { Link } from 'react-router-dom';
 
 const MainWebsite = ({ theme, toggleTheme }) => {
   return (
@@ -19,7 +20,7 @@ const MainWebsite = ({ theme, toggleTheme }) => {
         {/* <Internships /> */}
         {/* <BlogPreview /> */}
         <Footer />
-        <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+        <Link to="/internship-application"><ThemeToggle theme={theme} /></Link>
     </div>
   );
 };
