@@ -9,15 +9,15 @@ const ThemeToggle = ({ theme }) => {
     >
       {/* {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />} */}
       {/* <p><Rocket size={20} /></p>   */}
-      <h2>Apply Now</h2>
+      <h2>Apply</h2>
       
       <style jsx>{`
         .floating-theme-toggle {
           position: fixed;
           bottom: 30px;
           right: 30px;
-          width: 90px;
-          height: 90px;
+          width: 70px;
+          height: 70px;
           background-color: var(--primary-color);
           color: var(--secondary-color);
           border: none;
@@ -38,8 +38,8 @@ const ThemeToggle = ({ theme }) => {
           .floating-theme-toggle {
             bottom: 20px;
             right: 20px;
-            width: 90px;
-            height: 90px;
+            width: 70px;
+            height: 70px;
           }
         }
       `}</style>
