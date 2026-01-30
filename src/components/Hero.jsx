@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Rocket, ChevronRight, TrendingUp, Users, Award, ArrowRight } from 'lucide-react';
 import '../styles/hero.css';
+import { useNavigate } from "react-router-dom";
+import { useLoading } from "../context/LoadingContext";
 
-// Import several images (add/remove or rename to match your assets)
 import Image1 from '../assets/Images/image1.jpeg';
 import Image2 from '../assets/Images/image2.jpeg';
 import Image3 from '../assets/Images/image3.jpeg';
-// import Image4 from '../assets/Images/image4.jpeg';
 
 const Hero = () => {
-  // Image list - keep in an array so we can rotate through them
   const images = [Image1, Image2, Image3];
 
-  // current image index
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // rotate images every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -25,10 +22,17 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, [images.length]);
 
-  // click handler for manual demo (optional)
   const handleImageClick = () => {
     setCurrentIndex((prev) => (prev + 1) % images.length);
   };
+
+  const navigate = useNavigate();
+  const { setIsLoading } = useLoading();
+
+  const handleClick = () => {
+    setIsLoading(true);
+    navigate("/internship-application");
+  }
 
   return (
     <section id="home" className="hero">
@@ -55,7 +59,7 @@ const Hero = () => {
                   Join our internship program and take the first step towards a successful career in IT.
                 </p>
               </div>
-              <a href="/internship-application">
+              <a onClick={handleClick}>
                 <button className="btn btn-primary cta-button">
                   Apply Now
                   <ArrowRight size={20} />

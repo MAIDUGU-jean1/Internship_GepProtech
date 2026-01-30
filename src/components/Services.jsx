@@ -1,15 +1,17 @@
 import React from 'react';
-import { 
-  Database, 
-  Code, 
-  Monitor, 
-  Video, 
-  Search, 
+import {
+  Database,
+  Code,
+  Monitor,
+  Video,
+  Search,
   Smartphone,
   Cpu,
   Shield
 } from 'lucide-react';
 import '../styles/services.css';
+import { useNavigate } from "react-router-dom";
+import { useLoading } from "../context/LoadingContext";
 
 const Services = () => {
   const services = [
@@ -70,6 +72,14 @@ const Services = () => {
     }
   ];
 
+  const navigate = useNavigate();
+  const { setIsLoading } = useLoading();
+
+  const handleClick = () => {
+    setIsLoading(true);
+    navigate("/internship-application");
+  }
+
   return (
     <section id="services" className="services-section">
       <div className="services-bg" aria-hidden="true">
@@ -82,11 +92,11 @@ const Services = () => {
           <span className="section-subtitle">Our Programs</span>
           <h2 className="section-title">Comprehensive Tech Training Services</h2>
           <p className="section-description">
-            We offer specialized training programs designed to equip you with in-demand skills 
+            We offer specialized training programs designed to equip you with in-demand skills
             for today's digital economy.
           </p>
         </div>
-        
+
         <div className="services-grid">
           {services.map((service, index) => (
             <div key={index} className="service-card">
@@ -96,7 +106,7 @@ const Services = () => {
               <div className="service-content">
                 <h3 className="service-title">{service.title}</h3>
                 <p className="service-description">{service.description}</p>
-                <a href="/internship-application" className="btn btn-primary apply-now-btn">
+                <a onClick={handleClick} className="btn btn-primary apply-now-btn">
                   Apply Now
                 </a>
               </div>

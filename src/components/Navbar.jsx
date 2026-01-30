@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Home, Users, Briefcase, BookOpen, MessageSquare, Rocket } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
+import { useLoading } from "../context/LoadingContext";
+
 import '../styles/navbar.css';
+
 
 const Navbar = ({ theme, toggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
+  const navigate = useNavigate();
+  const { setIsLoading } = useLoading();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,6 +43,10 @@ const Navbar = ({ theme, toggleTheme }) => {
 
     // { name: 'Blog', icon: <MessageSquare size={20} /> },
   ];
+  const handleClick = () => {
+    setIsLoading(true);
+    navigate("/internship-application");
+  }
 
   const handleMenuToggle = () => {
     console.log('Menu toggled, new state:', !isOpen);
@@ -94,7 +105,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             >
               {theme === 'light' ? '🌙' : '☀️'}
             </button>
-            <a href="/internship-application">
+            <a onClick={handleClick}>
               <button className="btn btn-primary apply-btn">
                 <Rocket size={18} />
                 <span>Apply Now</span>
@@ -115,7 +126,7 @@ const Navbar = ({ theme, toggleTheme }) => {
 
       {/* Overlay for mobile menu */}
       {isOpen && (
-        <div 
+        <div
           className="mobile-menu-overlay"
           onClick={() => {
             setIsOpen(false);

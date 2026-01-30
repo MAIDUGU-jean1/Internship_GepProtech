@@ -19,6 +19,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/internshipApplicationPage.css';
 import Logo from '../assets/Images/logo.png';
+import { useEffect } from "react";
+import { useLoading } from "../context/LoadingContext";
 
 export default function InternshipApplicationPage() {
   const navigate = useNavigate();
@@ -37,6 +39,7 @@ export default function InternshipApplicationPage() {
     studyLevel: '',
     coverLetter: ''
   });
+  const { setIsLoading } = useLoading();
 
   const internshipFields = [
     "Data Analysis",
@@ -60,6 +63,10 @@ export default function InternshipApplicationPage() {
     "Postgraduate",
     "Other"
   ];
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -183,7 +190,9 @@ export default function InternshipApplicationPage() {
               </div>
 
               <div className="header-badge">
-                <span>Join Our E-Learning Program</span>
+                <span><a href="https://gepprotech.com">
+                  Join Our E-Learning Program
+                </a></span>
               </div>
             </div>
           </div>
@@ -205,7 +214,7 @@ export default function InternshipApplicationPage() {
                     <li>Fill the form below to apply for our internship program</li>
                     <li>Ensure all required fields are completed accurately</li>
                     <li>Submit your application and join our community for updates</li>
-                    <li> Get email updates about your application status. <br /></li>
+                    <li> Check your email regularly for your application status.</li>
                   </ul>
                   {/* Join our WhatsApp community after submission for more Updates */}
                 </p>

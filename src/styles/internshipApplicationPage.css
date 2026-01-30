@@ -103,6 +103,10 @@
   font-weight: 600;
   font-size: 0.9rem;
 }
+  .internship-app-wrapper .header-badge span a{
+    color: white;
+    text-decoration: none;
+  }
 
 /* Main Content */
 .internship-app-wrapper .application-main {
@@ -966,6 +970,7 @@
   .internship-app-wrapper .header-badge span{
     margin-top: 20px;
   }
+
 
   .internship-app-wrapper .job-header {
     padding: 25px 18px;

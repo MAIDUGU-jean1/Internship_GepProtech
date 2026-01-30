@@ -4,12 +4,14 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import './styles.css';
+import { LoadingProvider } from './context/LoadingContext.jsx'
 
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <BrowserRouter>
+  <BrowserRouter>
+    <LoadingProvider>
       <App />
-    </BrowserRouter>
-  </StrictMode>,
+    </LoadingProvider>
+  </BrowserRouter>
+
 )

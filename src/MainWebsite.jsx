@@ -12,8 +12,10 @@ import styles from './styles/FloatingButtons.module.css'; // Import CSS Module
 
 const MainWebsite = ({ theme, toggleTheme }) => {
   const [isScrollVisible, setIsScrollVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const whatsappNumber = "+237674386778";
   const whatsappMessage = "Hello! I'm interested in your internship program, i will like to in for ......";
+  
 
   // Show scroll button when page is scrolled down
   useEffect(() => {

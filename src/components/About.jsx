@@ -2,8 +2,18 @@ import React from 'react';
 import { Users, Award, ChevronRight, Rocket, Book } from 'lucide-react';
 import '../styles/about.css';
 import Image3 from '../assets/Images/image3.jpeg'; // keep only this image
+import { useNavigate } from "react-router-dom";
+import { useLoading } from "../context/LoadingContext";
 
 const About = () => {
+  const navigate = useNavigate();
+  const { setIsLoading } = useLoading();
+
+  const handleClick = () => {
+    setIsLoading(true);
+    navigate("/internship-application");
+  }
+
   return (
     // add background container inside section so CSS can place animated blurred shapes behind content
     <section id="about" className="about-section">
@@ -83,7 +93,7 @@ const About = () => {
               <h3>Ready to Start Your Journey?</h3>
               <p>Join our program and take the first step towards a successful career in IT</p>
             </div>
-            <a href="/internship-application">
+            <a onClick={handleClick}>
               <button className="btn btn-primary cta-btn">
                 <Rocket size={20} />
                 Apply Now
