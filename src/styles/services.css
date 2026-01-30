@@ -7,13 +7,18 @@
 }
 
 .services-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--primary-color),
+    transparent
+  );
 }
 
 .section-header {
@@ -61,15 +66,14 @@
 
 .service-card {
   background-color: var(--card-light);
-  padding: 35px 25px;
   border-radius: 12px;
-  text-align: center;
+  text-align: left;
   transition: all 0.3s ease;
   border: 1px solid transparent;
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  overflow: hidden;
 }
 
 .service-card:hover {
@@ -78,28 +82,35 @@
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
-.service-icon {
-  width: 70px;
-  height: 70px;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 25px;
-  color: white;
-  transition: all 0.3s ease;
+.service-thumbnail {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
 }
 
-.service-card:hover .service-icon {
-  transform: scale(1.1) rotate(10deg);
+.service-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-thumbnail img {
+  transform: scale(1.1);
+}
+
+.service-content {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .service-title {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: var(--secondary-color);
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   line-height: 1.3;
 }
 
@@ -108,18 +119,37 @@
   opacity: 0.9;
   line-height: 1.6;
   font-size: 0.95rem;
-  margin: 0;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.apply-now-btn {
+  align-self: flex-start;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.apply-now-btn:hover {
+  transform: translateX(5px);
 }
 
 /* Add subtle hover effect lines */
 .service-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--primary-color),
+    transparent
+  );
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -142,8 +172,9 @@
 /* individual code-tag elements (text-based, animated) */
 .services-bg .code-tag {
   position: absolute;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
-  color: rgba(45,55,72,0.12);
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+  color: rgba(45, 55, 72, 0.12);
   font-weight: 700;
   letter-spacing: 0.6px;
   filter: blur(6px);
@@ -153,21 +184,55 @@
 }
 
 /* place several tags with different positions and timings */
-.services-bg .code-tag.tag1 { top: 8%; left: -8%; font-size: 48px; animation-duration: 34s; }
-.services-bg .code-tag.tag2 { top: 40%; left: -6%; font-size: 36px; animation-duration: 28s; animation-delay: 4s; }
-.services-bg .code-tag.tag3 { top: 70%; left: -10%; font-size: 56px; animation-duration: 44s; animation-delay: 8s; color: rgba(218,165,32,0.08); }
+.services-bg .code-tag.tag1 {
+  top: 8%;
+  left: -8%;
+  font-size: 48px;
+  animation-duration: 34s;
+}
+.services-bg .code-tag.tag2 {
+  top: 40%;
+  left: -6%;
+  font-size: 36px;
+  animation-duration: 28s;
+  animation-delay: 4s;
+}
+.services-bg .code-tag.tag3 {
+  top: 70%;
+  left: -10%;
+  font-size: 56px;
+  animation-duration: 44s;
+  animation-delay: 8s;
+  color: rgba(218, 165, 32, 0.08);
+}
 
 /* sample tag contents via pseudo element */
-.services-bg .code-tag.tag1::after { content: "<section/>"; }
-.services-bg .code-tag.tag2::after { content: "</div>"; }
-.services-bg .code-tag.tag3::after { content: "<article/>"; }
+.services-bg .code-tag.tag1::after {
+  content: "<section/>";
+}
+.services-bg .code-tag.tag2::after {
+  content: "</div>";
+}
+.services-bg .code-tag.tag3::after {
+  content: "<article/>";
+}
 
 /* slide from left to right very slowly and fade */
 @keyframes slideTag {
-  0% { transform: translateX(0) scale(1); opacity: 0.06; }
-  40% { opacity: 0.14; }
-  60% { opacity: 0.14; }
-  100% { transform: translateX(120vw) scale(1.02); opacity: 0.02; }
+  0% {
+    transform: translateX(0) scale(1);
+    opacity: 0.06;
+  }
+  40% {
+    opacity: 0.14;
+  }
+  60% {
+    opacity: 0.14;
+  }
+  100% {
+    transform: translateX(120vw) scale(1.02);
+    opacity: 0.02;
+  }
 }
 
 /* Dark Mode Styles */
@@ -204,7 +269,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
   }
-  
+
   .section-title {
     font-size: 2.3rem;
   }
@@ -214,19 +279,19 @@
   .services-section {
     padding: 80px 0;
   }
-  
+
   .section-header {
     margin-bottom: 50px;
   }
-  
+
   .section-title {
     font-size: 2.1rem;
   }
-  
+
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .service-card {
     padding: 30px 20px;
   }
@@ -236,32 +301,32 @@
   .services-section {
     padding: 70px 0;
   }
-  
+
   .services-grid {
     grid-template-columns: 1fr;
     gap: 25px;
     max-width: 500px;
     margin: 0 auto;
   }
-  
+
   .section-title {
     font-size: 1.9rem;
   }
-  
+
   .section-description {
     font-size: 1rem;
   }
-  
+
   .service-card {
     padding: 30px;
   }
-  
+
   .service-icon {
     width: 65px;
     height: 65px;
     margin-bottom: 20px;
   }
-  
+
   .service-title {
     font-size: 1.2rem;
   }
@@ -271,29 +336,29 @@
   .services-section {
     padding: 60px 0;
   }
-  
+
   .section-title {
     font-size: 1.7rem;
   }
-  
+
   .section-subtitle {
     font-size: 0.8rem;
     padding: 5px 14px;
   }
-  
+
   .service-card {
     padding: 25px 20px;
   }
-  
+
   .service-icon {
     width: 60px;
     height: 60px;
   }
-  
+
   .service-title {
     font-size: 1.1rem;
   }
-  
+
   .service-description {
     font-size: 0.9rem;
   }
@@ -301,8 +366,13 @@
 
 /* responsive reductions */
 @media (max-width: 768px) {
-  .services-bg .code-tag { font-size: 28px; filter: blur(4px); }
-  .services-bg .code-tag.tag3 { font-size: 40px; }
+  .services-bg .code-tag {
+    font-size: 28px;
+    filter: blur(4px);
+  }
+  .services-bg .code-tag.tag3 {
+    font-size: 40px;
+  }
 }
 
 /* end of services.css */

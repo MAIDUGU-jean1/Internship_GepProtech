@@ -1,23 +1,23 @@
 import React from 'react';
-import { Moon, Sun } from 'lucide-react';
+import { Rocket } from 'lucide-react';
 
-const ThemeToggle = ({ theme, toggleTheme }) => {
+const ThemeToggle = ({ theme }) => {
   return (
     <button 
       className="floating-theme-toggle" 
-      onClick={toggleTheme}
       aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
     >
-      {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+      {/* {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />} */}
+      {/* <p><Rocket size={20} /></p>   */}
+      <h2>Apply</h2>
       
       <style jsx>{`
         .floating-theme-toggle {
           position: fixed;
           bottom: 30px;
           right: 30px;
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
+          width: 70px;
+          height: 70px;
           background-color: var(--primary-color);
           color: var(--secondary-color);
           border: none;
@@ -38,8 +38,8 @@ const ThemeToggle = ({ theme, toggleTheme }) => {
           .floating-theme-toggle {
             bottom: 20px;
             right: 20px;
-            width: 50px;
-            height: 50px;
+            width: 70px;
+            height: 70px;
           }
         }
       `}</style>

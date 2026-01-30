@@ -14,44 +14,59 @@ import '../styles/services.css';
 const Services = () => {
   const services = [
     {
-      icon: <Database size={28} />,
-      title: "Data Analysis",
-      description: "Transform raw data into actionable insights with our comprehensive data analysis training."
+      image: "/assets/services/frontend.png",
+      title: "Frontend Web Development",
+      description: "Master HTML, CSS, JavaScript, and modern frameworks like React to build stunning user interfaces."
     },
     {
-      icon: <Code size={28} />,
-      title: "Web Development",
-      description: "Build responsive, modern websites and web applications with cutting-edge technologies."
+      image: "/assets/services/backend.png",
+      title: "Backend Web Development",
+      description: "Learn server-side programming, databases, and API development with Node.js, Python, or PHP."
     },
     {
-      icon: <Monitor size={28} />,
-      title: "Basic IT",
-      description: "Master essential IT skills including hardware, software, networking, and troubleshooting."
+      image: "/assets/services/mobile.png",
+      title: "Mobile App Development",
+      description: "Create native and cross-platform mobile applications for iOS and Android using Swift, Kotlin, or React Native."
     },
     {
-      icon: <Video size={28} />,
-      title: "Video Production",
-      description: "Learn professional video editing, animation, and multimedia content creation."
+      image: "/assets/services/design.png",
+      title: "Product Design (UI/UX) / Graphic Design",
+      description: "Design intuitive user experiences and beautiful visual identities using Figma, Adobe XD, and Photoshop."
     },
     {
-      icon: <Search size={28} />,
-      title: "SEO Optimization",
-      description: "Optimize websites for search engines and improve online visibility and rankings."
+      image: "/assets/services/cybersecurity.png",
+      title: "Cyber Security",
+      description: "Protect digital assets and networks from cyber threats with advanced security training and certifications."
     },
     {
-      icon: <Smartphone size={28} />,
-      title: "App Development",
-      description: "Create mobile applications for iOS and Android platforms using modern frameworks."
+      image: "/assets/services/networking.png",
+      title: "Computer Networking and Maintenance",
+      description: "Set up and manage secure computer networks and ensure peak performance through regular maintenance."
     },
     {
-      icon: <Cpu size={28} />,
-      title: "Software Engineering",
-      description: "Master software development principles, architecture, and best practices."
+      image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070&auto=format&fit=crop",
+      title: "Software and Hardware Maintenance",
+      description: "Troubleshoot and repair software issues and hardware components to keep systems running smoothly."
     },
     {
-      icon: <Shield size={28} />,
-      title: "Cybersecurity",
-      description: "Protect systems and networks from digital attacks and ensure data security."
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop",
+      title: "Generative AI",
+      description: "Explore the cutting-edge world of AI-generated content, LLMs, and prompt engineering."
+    },
+    {
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2042&auto=format&fit=crop",
+      title: "Digital Marketing",
+      description: "Grow brands online through SEO, social media marketing, and data-driven advertising strategies."
+    },
+    {
+      image: "https://images.unsplash.com/photo-1507207611509-af012a3edeeb?q=80&w=2070&auto=format&fit=crop",
+      title: "Project Management",
+      description: "Lead tech projects to success using Agile, Scrum, and modern project management methodologies."
+    },
+    {
+      image: "https://images.unsplash.com/photo-1551288049-bbbda536639a?q=80&w=2070&auto=format&fit=crop",
+      title: "Business Intelligence",
+      description: "Transform data into strategic business decisions with advanced analytics and visualization tools."
     }
   ];
 
@@ -64,7 +79,7 @@ const Services = () => {
       </div>
       <div className="container">
         <div className="section-header">
-          <span className="section-subtitle">Our Services</span>
+          <span className="section-subtitle">Our Programs</span>
           <h2 className="section-title">Comprehensive Tech Training Services</h2>
           <p className="section-description">
             We offer specialized training programs designed to equip you with in-demand skills 
@@ -75,11 +90,16 @@ const Services = () => {
         <div className="services-grid">
           {services.map((service, index) => (
             <div key={index} className="service-card">
-              <div className="service-icon">
-                {service.icon}
+              <div className="service-thumbnail">
+                <img src={service.image} alt={service.title} />
               </div>
-              <h3 className="service-title">{service.title}</h3>
-              <p className="service-description">{service.description}</p>
+              <div className="service-content">
+                <h3 className="service-title">{service.title}</h3>
+                <p className="service-description">{service.description}</p>
+                <a href="/internship-application" className="btn btn-primary apply-now-btn">
+                  Apply Now
+                </a>
+              </div>
             </div>
           ))}
         </div>

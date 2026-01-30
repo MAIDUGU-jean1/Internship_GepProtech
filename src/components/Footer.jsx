@@ -84,7 +84,7 @@ const Footer = () => {
               </div>
               <div className="contact-item">
                 <Mail size={18} />
-                <span>www.gepprotech.com</span>
+                <span>info@gepprotech.com</span>
               </div>
               <div className="contact-item">
                 <Clock size={18} />

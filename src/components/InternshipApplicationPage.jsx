@@ -108,7 +108,7 @@ export default function InternshipApplicationPage() {
       };
 
       const response = await axios.post(
-        'http://localhost:8000/api/internship-application',
+        `${import.meta.env.VITE_API_BASE_URL}/api/internship-application`,
         dataToSubmit,
         {
           headers: {
@@ -200,7 +200,7 @@ export default function InternshipApplicationPage() {
                 <h2 className="job-title">
                   Internship Application Form
                 </h2>
-                <p className="job-subtitle">
+                <p className="job-subtitleame">
                   <ul>
                     <li>Fill the form below to apply for our internship program</li>
                     <li>Ensure all required fields are completed accurately</li>
