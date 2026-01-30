@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { 
-  ArrowRight, 
-  ArrowLeft, 
-  CheckCircle, 
-  Mail, 
-  User, 
-  Phone, 
-  GraduationCap, 
+import {
+  ArrowRight,
+  ArrowLeft,
+  CheckCircle,
+  Mail,
+  User,
+  Phone,
+  GraduationCap,
   Calendar,
   BookOpen,
   MessageSquare,
@@ -18,6 +18,8 @@ import {
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/internshipApplicationPage.css';
+import Logo from '../assets/Images/logo.png';
+
 export default function InternshipApplicationPage() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
@@ -83,7 +85,7 @@ export default function InternshipApplicationPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Only submit when on step 3 (final step)
     if (step !== 3) {
       handleNext();
@@ -140,10 +142,10 @@ export default function InternshipApplicationPage() {
         // Backend returned error response
         console.error('Backend error:', error.response.data);
         setError(error.response.data);
-        
+
         // Display validation errors or server errors
-        const errorMessage = error.response.data?.message || 
-                           'An error occurred while submitting your application.';
+        const errorMessage = error.response.data?.message ||
+          'An error occurred while submitting your application.';
         // alert(errorMessage);
       } else if (error.request) {
         // Request sent but no response
@@ -174,12 +176,14 @@ export default function InternshipApplicationPage() {
           <div className="container">
             <div className="header-content">
               <div className="logo" onClick={() => navigate('/')}>
+                <img src={Logo} alt="GeP ProTech Academy Logo" className='logo' />
+
                 <span className="logo-text">GeP ProTech</span>
                 <span className="logo-accent">Academy</span>
               </div>
-              
+
               <div className="header-badge">
-                <span>Join Our Internship Program</span>
+                <span>Join Our E-Learning Program</span>
               </div>
             </div>
           </div>
@@ -188,30 +192,22 @@ export default function InternshipApplicationPage() {
         {/* Main Content */}
         <main className="application-main">
           <div className="container">
-            {/* Hero Banner */}
-            <div className="application-hero">
-              <div className="hero-content">
-                <h1 className="hero-title">
-                  We've Saved a Seat for <span className="highlight">You!</span>
-                </h1>
-                <p className="hero-subtitle">
-                  From internships to leadership roles, find your place in a community 
-                  that values your unique perspective.
-                </p>
-              </div>
-            </div>
+
 
             {/* Job Card */}
             <div className="job-card">
               <div className="job-header">
                 <h2 className="job-title">
-                  Digital Marketing, Design & Project Management Intern
+                  Internship Application Form
                 </h2>
                 <p className="job-subtitle">
-                  Internship Application Form
-                </p>
-                <p className="job-department">
-                  Basic IT / Design / App Development / Web Development
+                  <ul>
+                    <li>Fill the form below to apply for our internship program</li>
+                    <li>Ensure all required fields are completed accurately</li>
+                    <li>Submit your application and join our community for updates</li>
+                    <li> Get email updates about your application status. <br /></li>
+                  </ul>
+                  {/* Join our WhatsApp community after submission for more Updates */}
                 </p>
               </div>
 
@@ -220,7 +216,7 @@ export default function InternshipApplicationPage() {
                 {/* Progress Bar */}
                 <div className="progress-container">
                   <div className="progress-bar">
-                    <div 
+                    <div
                       className="progress-fill"
                       style={{ width: `${progressPercentage}%` }}
                     ></div>
@@ -263,7 +259,7 @@ export default function InternshipApplicationPage() {
                       <p className="step-description">
                         Let's start with your basic information
                       </p>
-                      
+
                       <div className="form-grid">
                         <div className="form-group">
                           <label htmlFor="name">
@@ -325,7 +321,7 @@ export default function InternshipApplicationPage() {
                       <p className="step-description">
                         Tell us about your educational background
                       </p>
-                      
+
                       <div className="form-grid">
                         <div className="form-group">
                           <label htmlFor="school">
@@ -390,7 +386,7 @@ export default function InternshipApplicationPage() {
                       <p className="step-description">
                         Finalize your internship preferences
                       </p>
-                      
+
                       <div className="form-grid">
                         <div className="form-group">
                           <label htmlFor="internshipField">
@@ -470,7 +466,7 @@ export default function InternshipApplicationPage() {
                         Previous Step
                       </button>
                     )}
-                    
+
                     <button
                       type="submit"
                       className="btn btn-primary next-btn"
@@ -531,7 +527,7 @@ export default function InternshipApplicationPage() {
           <div className="container">
             <div className="footer-content">
               <p>© {new Date().getFullYear()} GeP ProTech Academy. All rights reserved.</p>
-              <button 
+              <button
                 className="back-home-btn"
                 onClick={() => navigate('/')}
               >
@@ -545,33 +541,33 @@ export default function InternshipApplicationPage() {
         {showCommunityModal && (
           <div className="community-modal-overlay">
             <div className="community-modal">
-              <button 
+              <button
                 className="close-modal"
                 onClick={() => setShowCommunityModal(false)}
               >
                 <X size={24} />
               </button>
-              
+
               <div className="modal-content">
                 <div className="modal-icon">
                   <CheckCircle size={64} />
                 </div>
-                
+
                 <h2>Application Submitted! </h2>
-                
+
                 <p className="modal-message">
-                  Thank you for applying to our internship program. Your application 
+                  Thank you for applying to our internship program. Your application
                   has been received and our team will review it shortly.
                 </p>
-                
-                
+
+
                 <div className="modal-cta">
                   <h3>Join Our Community</h3>
                   <p>
-                    Connect with fellow applicants, get updates, and network with 
+                    Connect with fellow applicants, get updates, and network with
                     industry professionals in our WhatsApp community.
                   </p>
-                  
+
                   <div className="modal-buttons">
                     <button
                       className="btn btn-primary join-btn"
@@ -579,7 +575,7 @@ export default function InternshipApplicationPage() {
                     >
                       Join WhatsApp Community
                     </button>
-                    
+
                     <button
                       className="btn btn-secondary close-btn"
                       onClick={() => setShowCommunityModal(false)}

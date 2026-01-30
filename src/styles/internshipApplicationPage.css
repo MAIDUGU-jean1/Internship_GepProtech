@@ -58,6 +58,11 @@
   z-index: 1000;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+.logo {
+  height: 40px;
+  width: auto;
+  margin-right: 10px;
+}
 
 .internship-app-wrapper .header-content {
   display: flex;
@@ -91,7 +96,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background-color: rgba(255, 255, 255, 0.15);
+  /* background-color: rgba(255, 255, 255, 0.15); */
+  margin-top: 20px;
   padding: 8px 16px;
   border-radius: 50px;
   font-weight: 600;
@@ -825,7 +831,14 @@
   }
   
   .internship-app-wrapper .job-title {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
+  }
+  .job-subtitle ul li {
+    margin-bottom: 2px;
+  }
+  .job-subtitle ul li::marker {
+    color: var(--primary-color);
+    /* margin-left: 20px; */
   }
   
   .internship-app-wrapper .application-form-container {
@@ -867,6 +880,33 @@
     gap: 15px;
     text-align: center;
   }
+
+  /* Make header logo + text stack nicely on tablet as well (smaller adjustments) */
+  .internship-app-wrapper .header-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+  }
+
+  /* Make .logo container vertical and centered */
+  .internship-app-wrapper .logo {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .internship-app-wrapper .logo img {
+    height: 64px; /* moderate size on tablets */
+    width: auto;
+    display: block;
+  }
+
+  .internship-app-wrapper .logo-text,
+  .internship-app-wrapper .logo-accent {
+    display: block;
+    line-height: 1;
+  }
 }
 
 @media (max-width: 480px) {
@@ -875,19 +915,66 @@
   }
   
   .internship-app-wrapper .header-content {
+    /* stack header vertically and center everything */
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
     text-align: center;
+    align-items: center;
   }
   
+
+  .internship-app-wrapper .logo {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 0;
+  }
+
+  /* logo image size — keep normal, not too big */
+  .internship-app-wrapper .logo img {
+    height: 70px; 
+    width: auto;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  .internship-app-wrapper .logo-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff; 
+    margin: 0;
+  }
+
+  .internship-app-wrapper .logo-accent {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-top: -2px;
+    display: block;
+  }
+
+  .internship-app-wrapper .header-badge {
+    margin-top: 6px;
+    align-self: center;
+    justify-self: center;
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+  .internship-app-wrapper .header-badge span{
+    margin-top: 20px;
+  }
+
   .internship-app-wrapper .job-header {
-    padding: 25px 20px;
+    padding: 25px 18px;
   }
-  
+
   .internship-app-wrapper .application-form-container {
-    padding: 25px 20px;
+    padding: 25px 18px;
   }
-  
+
   .internship-app-wrapper .step-circle {
     width: 40px;
     height: 40px;
