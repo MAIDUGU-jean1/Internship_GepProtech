@@ -40,7 +40,7 @@ const Navbar = ({ theme, toggleTheme }) => {
     { name: 'Home', icon: <Home size={20} /> },
     { name: 'Programs', icon: <Briefcase size={20} /> },
     { name: 'About', icon: <Users size={20} /> },
-    { name: 'Internships', icon: <BookOpen size={20} /> },
+    { name: 'Internships', icon: <BookOpen size={20} href='/internship-application' /> },
 
     // { name: 'Blog', icon: <MessageSquare size={20} /> },
   ];
@@ -85,9 +85,9 @@ const Navbar = ({ theme, toggleTheme }) => {
             {navItems.map((item) => (
               <a
                 key={item.name}
-                href={`#${item.name.toLowerCase()}`}
+                href={item.name === 'Internships' ? '/internship-application' : `#${item.name.toLowerCase()}`}
                 className="nav-link"
-                onClick={handleLinkClick}
+                onClick={item.name === 'Internships' ? handleClick : handleLinkClick}
               >
                 {/* <span className="nav-icon">{item.icon}</span> */}
                 <span className="nav-label">{item.name}</span>
