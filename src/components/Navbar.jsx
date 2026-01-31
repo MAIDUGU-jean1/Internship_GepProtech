@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Home, Users, Briefcase, BookOpen, MessageSquare, Rocket } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import { useLoading } from "../context/LoadingContext";
+import Logo from '../assets/Images/logo.png';
 
 import '../styles/navbar.css';
 
@@ -70,7 +71,7 @@ const Navbar = ({ theme, toggleTheme }) => {
         {/* Left Section: Logo */}
         <div className="nav-section nav-left">
           <div className="nav-logo">
-            <img className='logo' src="/assets/logo1.png" alt="logo" />
+            <img className='logo' src={Logo} alt="logo" />
             <div className='logo-info'>
               <span className="logo-text">GeP ProTech</span> <br />
               <span className="logo-accent">Internship</span>

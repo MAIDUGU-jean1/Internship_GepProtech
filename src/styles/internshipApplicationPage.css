@@ -30,7 +30,6 @@
 
 
 .internship-app-wrapper {
-  /* Reset inherited styles */
   all: revert;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   color: var(--text-light);
@@ -39,8 +38,6 @@
 .internship-app-wrapper * {
   box-sizing: border-box;
 }
-
-/* Internship Application Page */
 .internship-app-wrapper .internship-application-page {
   min-height: 100vh;
   display: flex;
@@ -48,7 +45,6 @@
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
 }
 
-/* Header */
 .internship-app-wrapper .application-header {
   background: linear-gradient(135deg, var(--secondary-color) 0%, #2c5282 100%);
   color: white;
@@ -58,25 +54,31 @@
   z-index: 1000;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-.logo {
-  height: 40px;
-  width: auto;
-  margin-right: 10px;
-}
 
 .internship-app-wrapper .header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap;
 }
 
 .internship-app-wrapper .logo {
   display: flex;
   align-items: center;
+  flex-direction: row; 
+  gap: 10px; 
   font-size: 1.8rem;
   font-weight: 700;
   cursor: pointer;
   transition: opacity 0.3s ease;
+  flex-shrink: 0; 
+  
+}
+
+.internship-app-wrapper .logo img {
+  height: 50px;
+  width: auto;
+  display: block;
 }
 
 .internship-app-wrapper .logo:hover {
@@ -85,28 +87,40 @@
 
 .internship-app-wrapper .logo-text {
   color: white;
+  white-space: nowrap; 
 }
 
 .internship-app-wrapper .logo-accent {
   color: var(--primary-color);
   margin-left: 5px;
+  white-space: nowrap; 
 }
 
 .internship-app-wrapper .header-badge {
   display: flex;
   align-items: center;
   gap: 8px;
-  /* background-color: rgba(255, 255, 255, 0.15); */
-  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.15); /* Semi-transparent white background */
   padding: 8px 16px;
   border-radius: 50px;
   font-weight: 600;
   font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0; /* Prevents badge from shrinking */
 }
-  .internship-app-wrapper .header-badge span a{
-    color: white;
-    text-decoration: none;
-  }
+
+/* Hover effect for header badge */
+.internship-app-wrapper .header-badge:hover {
+  background-color: rgba(255, 255, 255, 0.25); /* Lighter on hover */
+}
+
+/* Link styling inside header badge */
+.internship-app-wrapper .header-badge span a {
+  color: white;
+  text-decoration: none;
+  white-space: nowrap; /* Prevents link text from breaking */
+}
+/* ==================== END HEADER SECTION ==================== */
 
 /* Main Content */
 .internship-app-wrapper .application-main {
@@ -799,7 +813,7 @@
   color: #e2e8f0;
 }
 
-/* Responsive Design */
+/* ==================== RESPONSIVE DESIGN ==================== */
 @media (max-width: 1024px) {
   .internship-app-wrapper .container {
     grid-template-columns: 1fr;
@@ -885,31 +899,54 @@
     text-align: center;
   }
 
-  /* Make header logo + text stack nicely on tablet as well (smaller adjustments) */
+  /* Header adjustments for tablets - keep horizontal layout */
   .internship-app-wrapper .header-content {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    text-align: center;
+    gap: 15px;
+    padding: 0 15px;
   }
 
-  /* Make .logo container vertical and centered */
+  /* Reduce logo text size slightly on tablet */
   .internship-app-wrapper .logo {
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
+    font-size: 1.5rem;
+    gap: 8px;
   }
 
   .internship-app-wrapper .logo img {
-    height: 64px; /* moderate size on tablets */
-    width: auto;
-    display: block;
+    height: 36px;
   }
 
-  .internship-app-wrapper .logo-text,
-  .internship-app-wrapper .logo-accent {
-    display: block;
-    line-height: 1;
+  /* Reduce header badge font size */
+  .internship-app-wrapper .header-badge {
+    font-size: 0.85rem;
+    padding: 8px 14px;
+  }
+}
+
+/* Medium-small screens - transition point */
+@media (max-width: 640px) {
+  /* Header - start transitioning to vertical layout */
+  .internship-app-wrapper .header-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+  }
+
+  .internship-app-wrapper .logo {
+    flex-direction: row;
+    justify-content: center;
+    font-size: 1.4rem;
+    
+  }
+
+  .internship-app-wrapper .logo img {
+    height: 40px;
+  }
+
+  /* Header badge - full width on medium-small screens */
+  .internship-app-wrapper .header-badge {
+    font-size: 0.85rem;
+    padding: 10px 16px;
   }
 }
 
@@ -918,59 +955,51 @@
     font-size: 1.9rem;
   }
   
+  /* Small screen header - center everything and stack vertically */
   .internship-app-wrapper .header-content {
-    /* stack header vertically and center everything */
-    flex-direction: column;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center all items horizontally */
+    justify-content: center; /* Center all items vertically */
     gap: 12px;
-    text-align: center;
-    align-items: center;
+    padding: 10px;
+    text-align: center; /* Center text content */
   }
-  
 
   .internship-app-wrapper .logo {
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
+    flex-direction: column;
+    align-items: center; 
     justify-content: center;
-    gap: 6px;
-    padding: 6px 0;
+    font-size: 1.3rem;
+    gap: 8px;
   }
 
-  /* logo image size — keep normal, not too big */
   .internship-app-wrapper .logo img {
-    height: 70px; 
+    height: 50px;
     width: auto;
-    border-radius: 8px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-    margin-top: 10px;
-    margin-left: 10px;
-  }
-
-  .internship-app-wrapper .logo-text {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #ffffff; 
-    margin: 0;
-  }
-
-  .internship-app-wrapper .logo-accent {
-    font-size: 1.1rem;
-    color: var(--primary-color);
-    margin-top: -2px;
     display: block;
   }
 
-  .internship-app-wrapper .header-badge {
-    margin-top: 6px;
-    align-self: center;
-    justify-self: center;
-    font-size: 0.85rem;
-    padding: 6px 12px;
-  }
-  .internship-app-wrapper .header-badge span{
-    margin-top: 20px;
+  .internship-app-wrapper .logo-text {
+    margin-left: 0;
+    display: inline; 
+    white-space: nowrap;
+    line-height: 1.2;
   }
 
+  .internship-app-wrapper .logo-accent {
+    margin-left: 5px; 
+    display: inline;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+
+  .internship-app-wrapper .header-badge {
+    font-size: 0.85rem;
+    padding: 10px 16px;
+    width: auto;
+    text-align: center;
+    margin-top: 5px; 
+  }
 
   .internship-app-wrapper .job-header {
     padding: 25px 18px;

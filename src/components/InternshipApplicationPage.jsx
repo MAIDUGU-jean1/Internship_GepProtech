@@ -185,12 +185,14 @@ export default function InternshipApplicationPage() {
               <div className="logo" onClick={() => navigate('/')}>
                 <img src={Logo} alt="GeP ProTech Academy Logo" className='logo' />
 
-                <span className="logo-text">GeP ProTech</span>
-                <span className="logo-accent">Academy</span>
+                <span className="logo-text">
+                  GeP ProTech
+                  <span className="logo-accent">Academy</span>
+                </span>
               </div>
 
               <div className="header-badge">
-                <span><a href="https://gepprotech.com">
+                <span><a href="https://gepprotech.com" target='blank'>
                   Join Our E-Learning Program
                 </a></span>
               </div>
