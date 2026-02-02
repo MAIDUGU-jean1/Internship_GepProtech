@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Home, Users, Briefcase, BookOpen, MessageSquare, Rocket } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import { useLoading } from "../context/LoadingContext";
+import Logo from '../assets/Images/logo.png';
 
 import '../styles/navbar.css';
 
@@ -39,7 +40,7 @@ const Navbar = ({ theme, toggleTheme }) => {
     { name: 'Home', icon: <Home size={20} /> },
     { name: 'Programs', icon: <Briefcase size={20} /> },
     { name: 'About', icon: <Users size={20} /> },
-    { name: 'Internships', icon: <BookOpen size={20} /> },
+    { name: 'Internships', icon: <BookOpen size={20} href='/internship-application' /> },
 
     // { name: 'Blog', icon: <MessageSquare size={20} /> },
   ];
@@ -70,7 +71,7 @@ const Navbar = ({ theme, toggleTheme }) => {
         {/* Left Section: Logo */}
         <div className="nav-section nav-left">
           <div className="nav-logo">
-            <img className='logo' src="/assets/logo1.png" alt="logo" />
+            <img className='logo' src={Logo} alt="logo" />
             <div className='logo-info'>
               <span className="logo-text">GeP ProTech</span> <br />
               <span className="logo-accent">Internship</span>
@@ -84,9 +85,9 @@ const Navbar = ({ theme, toggleTheme }) => {
             {navItems.map((item) => (
               <a
                 key={item.name}
-                href={`#${item.name.toLowerCase()}`}
+                href={item.name === 'Internships' ? '/internship-application' : `#${item.name.toLowerCase()}`}
                 className="nav-link"
-                onClick={handleLinkClick}
+                onClick={item.name === 'Internships' ? handleClick : handleLinkClick}
               >
                 {/* <span className="nav-icon">{item.icon}</span> */}
                 <span className="nav-label">{item.name}</span>
